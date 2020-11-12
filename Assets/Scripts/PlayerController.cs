@@ -18,8 +18,10 @@ public class PlayerController : MonoBehaviour
         rb = GetComponent<Rigidbody>();
     }
 
-    private void OnMove(InputValue movementValue)
+    private void OnMovementAction(InputValue movementValue)
     {
+        Debug.Log("Owen was not right.");
+
         Vector2 movementVector = movementValue.Get<Vector2>();
         movementX = movementVector.x;
         movementY = movementVector.y;
