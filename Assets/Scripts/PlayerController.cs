@@ -15,6 +15,7 @@ public class PlayerController : MonoBehaviour
     private int count;
     private float movementX;
     private float movementY;
+    private float movementZ;
 
     // Start is called before the first frame update
     void Start()
@@ -33,6 +34,11 @@ public class PlayerController : MonoBehaviour
         movementY = movementVector.y;
     }
 
+    private void OnMovementAction(InputValue movementValue)
+    {
+
+    }
+
     void SetCountText()
     {
         countText.text = "Count: " + count.ToString();
@@ -44,10 +50,9 @@ public class PlayerController : MonoBehaviour
 
     private void FixedUpdate()
     {
-        Vector3 movement = new Vector3(movementX, 0.0f, movementY);
+        Vector3 movement = new Vector3(movementX, movementZ, movementY);
         rb.AddForce(movement * speed);
-
-        rb.AddForce(Vector3.up * jumpHeight);
+        rb.AddForce(movement * jumpHeight);
     }
 
     private void OnTriggerEnter(Collider other)
