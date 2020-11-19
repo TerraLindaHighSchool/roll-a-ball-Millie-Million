@@ -45,7 +45,7 @@ public class PlayerController : MonoBehaviour
     private void FixedUpdate()
     {
         Vector3 movement = new Vector3(movementX, 0.0f, movementY);
-        Vector3 upwardMovement = new Vector3(movementX, 1, movementY);
+        Vector3 upwardMovement = new Vector3(0, 1, 0);
         rb.AddForce(movement * speed);
 
         if (Keyboard.current.spaceKey.wasPressedThisFrame)
