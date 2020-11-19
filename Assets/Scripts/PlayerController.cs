@@ -10,6 +10,8 @@ public class PlayerController : MonoBehaviour
     public float jumpHeight;
     public TextMeshProUGUI countText;
     public GameObject winTextObject;
+    public GameObject loseTextObject;
+    public GameObject startTextObject;
 
     private Rigidbody rb;
     private int count;
@@ -19,11 +21,14 @@ public class PlayerController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        Time.timeScale = 1;
         rb = GetComponent<Rigidbody>();
         count = 0;
 
         SetCountText();
         winTextObject.SetActive(false);
+        loseTextObject.SetActive(false);
+        startTextObject.SetActive(true);
     }
 
     private void OnMovement(InputValue movementValue)
@@ -39,6 +44,7 @@ public class PlayerController : MonoBehaviour
         if(count >= 12)
         {
             winTextObject.SetActive(true);
+            Time.timeScale = 0;
         }
     }
 
@@ -50,7 +56,6 @@ public class PlayerController : MonoBehaviour
 
         if (Keyboard.current.spaceKey.wasPressedThisFrame)
         {
-            Debug.Log("jump");
             rb.AddForce(upwardMovement * jumpHeight);
         }
     }
@@ -63,6 +68,18 @@ public class PlayerController : MonoBehaviour
             count = count + 1;
 
             SetCountText();
+            startTextObject.SetActive(false);
         }
+
+        if (other.gameObject.CompareTag("Death"))
+        {
+            loseTextObject.SetActive(true);
+            Death();
+        }
+    }
+
+    private void Death()
+    {
+        Time.timeScale = 0;   
     }
 }
