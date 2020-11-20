@@ -14,10 +14,10 @@ public class PlayerController : MonoBehaviour
     public GameObject startTextObject;
 
     private Rigidbody rb;
+    private AudioSource omnomnom;
     private int count;
     private float movementX;
     private float movementY;
-    private AudioSource omnomnom;
 
     // Start is called before the first frame update
     void Start()

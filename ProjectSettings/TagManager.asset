@@ -6,6 +6,7 @@ TagManager:
   tags:
   - PickUp
   - Death
+  - Super
   layers:
   - Default
   - TransparentFX
