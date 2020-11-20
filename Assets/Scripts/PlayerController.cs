@@ -17,12 +17,14 @@ public class PlayerController : MonoBehaviour
     private int count;
     private float movementX;
     private float movementY;
+    private AudioSource omnomnom;
 
     // Start is called before the first frame update
     void Start()
     {
         Time.timeScale = 1;
         rb = GetComponent<Rigidbody>();
+        omnomnom = GetComponent<AudioSource>();
         count = 0;
 
         SetCountText();
@@ -41,7 +43,7 @@ public class PlayerController : MonoBehaviour
     void SetCountText()
     {
         countText.text = "Count: " + count.ToString();
-        if(count >= 12)
+        if(count >= 30)
         {
             winTextObject.SetActive(true);
             Time.timeScale = 0;
@@ -66,6 +68,7 @@ public class PlayerController : MonoBehaviour
         {
             other.gameObject.SetActive(false);
             count = count + 1;
+            omnomnom.Play();
 
             SetCountText();
             startTextObject.SetActive(false);
